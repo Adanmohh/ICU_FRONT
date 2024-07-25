@@ -63,7 +63,7 @@ if uploaded_file is not None:
 
         st.dataframe(patient_info, hide_index = True)
 
-        st.line_chart(df[['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp']])
+        #st.line_chart(df[['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp']])
 
         # st.subheader("Preview of uploaded data:")
         # st.dataframe(df)
@@ -90,7 +90,24 @@ if uploaded_file is not None:
                 st.write("Sepsis probability percentage on each hour")
                 #st.dataframe(pred_df)
                 #st.line_chart(pred_df[['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp']])
-                st.line_chart(pred_df[['Sepsis_Prediction%']])
+
+                st.write(df.index)
+                st.write(df.index.dtype)
+                df['label'] = [str(i) if i > 9 else f'0{i}' for i in df.index ]
+                st.line_chart(df[['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp', 'label']].iloc[5:], x='label')
+
+                pred_df['SepsisLabel'] = pred_df['SepsisLabel'] * 100
+
+                # Create separate charts for Sepsis_Prediction% and SepsisLabel
+
+                st.subheader("Sepsis Prediction %  vs Actual Sepsis Label ")
+                chart_data = pd.DataFrame({
+                    'Sepsis_Prediction%': pred_df['Sepsis_Prediction%'],
+                    'SepsisLabel': pred_df['SepsisLabel']
+                })
+                chart_data['label'] = [str(i) if i > 9 else f'0{i}' for i in chart_data.index ]
+                st.line_chart(chart_data, x='label')
+
                 #st.success("🎉 Prediction successful!")
 
                 csv = pred_df.to_csv(index=False).encode('utf-8')
