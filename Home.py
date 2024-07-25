@@ -102,7 +102,7 @@ if uploaded_file is not None:
                 st.subheader("Sepsis Prediction %  vs Actual Sepsis Label ")
                 chart_data = pd.DataFrame({
                     'Sepsis_Prediction%': pred_df['Sepsis_Prediction%'],
-                    'SepsisLabel': pred_df['SepsisLabel']
+                    #'SepsisLabel': pred_df['SepsisLabel']
                 })
                 chart_data['label'] = [str(i) if i > 9 else f'0{i}' for i in chart_data.index ]
                 st.line_chart(chart_data, x='label')
