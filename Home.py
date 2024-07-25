@@ -93,7 +93,7 @@ if uploaded_file is not None:
 
 
                 df['hours'] = [str(i) if i > 9 else f'0{i}' for i in df.index ]
-                st.line_chart(df[['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp', 'label']].iloc[5:], x='label')
+                st.line_chart(df[['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp']].iloc[5:], x='hours')
 
                 pred_df['SepsisLabel'] = pred_df['SepsisLabel'] * 100
 
@@ -105,7 +105,7 @@ if uploaded_file is not None:
                     #'SepsisLabel': pred_df['SepsisLabel']
                 })
                 chart_data['hours'] = [str(i) if i > 9 else f'0{i}' for i in chart_data.index ]
-                st.line_chart(chart_data, x='label')
+                st.line_chart(chart_data, x='hours')
 
                 #st.success("🎉 Prediction successful!")
 
