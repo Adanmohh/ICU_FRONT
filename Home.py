@@ -73,7 +73,7 @@ if uploaded_file is not None:
                     response.raise_for_status()
 
                     prediction = response.json().get('predictions')
-                    pred_list.append(round(100*prediction[0],2))
+                    pred_list.append(round(100*prediction[0],1))
 
                 pred_df =df[5:]
                 pred_df['Sepsis_Prediction%']=pred_list
