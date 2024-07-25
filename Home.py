@@ -91,8 +91,7 @@ if uploaded_file is not None:
                 #st.dataframe(pred_df)
                 #st.line_chart(pred_df[['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp']])
 
-                st.write(df.index)
-                st.write(df.index.dtype)
+
                 df['label'] = [str(i) if i > 9 else f'0{i}' for i in df.index ]
                 st.line_chart(df[['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp', 'label']].iloc[5:], x='label')
 
