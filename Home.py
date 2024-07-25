@@ -55,7 +55,15 @@ if uploaded_file is not None:
         for i in range(len(df)-5):
             seqs.append(df[i:i+6].to_csv().encode("utf-8"))
 
-        st.success("File successfully uploaded!")
+        #st.success("File successfully uploaded!")
+
+        patient_info = df[['Patient_ID', 'Age', 'Gender']].iloc[0:1]
+        patient_info['Gender'] = patient_info['Gender'].map({0:'Female', 1: 'Male'})
+
+
+        st.dataframe(patient_info, hide_index = True)
+
+        st.line_chart(df[['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp']])
 
         # st.subheader("Preview of uploaded data:")
         # st.dataframe(df)
@@ -80,8 +88,10 @@ if uploaded_file is not None:
 
                 st.subheader("Prediction:")
                 st.write("Sepsis probability percentage on each hour")
-                st.dataframe(pred_df)
-                st.success("🎉 Prediction successful!")
+                #st.dataframe(pred_df)
+                #st.line_chart(pred_df[['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp']])
+                st.line_chart(pred_df[['Sepsis_Prediction%']])
+                #st.success("🎉 Prediction successful!")
 
                 csv = pred_df.to_csv(index=False).encode('utf-8')
                 st.download_button(
