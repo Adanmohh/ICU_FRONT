@@ -99,7 +99,7 @@ if uploaded_file is not None:
 
                 # Create separate charts for Sepsis_Prediction% and SepsisLabel
 
-                st.subheader("Sepsis Prediction %  vs Actual Sepsis Label ")
+                st.subheader("Sepsis Prediction")
                 chart_data = pd.DataFrame({
                     'Sepsis_Prediction%': pred_df['Sepsis_Prediction%'],
                     #'SepsisLabel': pred_df['SepsisLabel']
