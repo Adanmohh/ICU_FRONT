@@ -87,7 +87,7 @@ if uploaded_file is not None:
                 pred_df['Sepsis_Prediction%']=pred_list
 
                 st.subheader("Prediction:")
-                st.write("Sepsis probability percentage on each hour")
+                st.write("Vital Signs of Patient_ID 16744")
                 #st.dataframe(pred_df)
                 #st.line_chart(pred_df[['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp']])
 
